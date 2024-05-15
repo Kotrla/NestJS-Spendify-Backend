@@ -1,0 +1,18 @@
+{
+  "singleQuote": true,
+  "printWidth": 110,
+  "proseWrap": "always",
+  "tabWidth": 2,
+  "useTabs": true,
+  "trailingComma": "es5",
+  "jsxBracketSameLine": true,
+  "semi": true,
+  "arrowParens": "avoid",
+  "bracketSameLine": true,
+  "bracketSpacing": true,
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
+  ]
+}
