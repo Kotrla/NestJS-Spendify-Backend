@@ -7,9 +7,14 @@ import { AppController } from './app.controller';
 import { AuthGuard } from './common/guards/auth.guard';
 import { UsersModule } from './modules/users/users.module';
 import { SpendingModule } from './modules/spending/spending.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
 	imports: [
+		ConfigModule.forRoot({
+			envFilePath: process.env['NODE_ENV'] ? `.env.${process.env['NODE_ENV']}` : '.env',
+			isGlobal: true,
+		}),
 		UsersModule,
 		SpendingModule,
 		CoreModule,
