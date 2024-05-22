@@ -2,12 +2,12 @@ import { JwtModule } from '@nestjs/jwt';
 import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { AppService } from './app.service';
+import { ConfigModule } from '@nestjs/config';
 import { CoreModule } from './core/core.module';
 import { AppController } from './app.controller';
 import { AuthGuard } from './common/guards/auth.guard';
 import { UsersModule } from './modules/users/users.module';
 import { SpendingModule } from './modules/spending/spending.module';
-import { ConfigModule } from '@nestjs/config';
 
 @Module({
 	imports: [

@@ -1,8 +1,8 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { AppModule } from './../src/app.module';
 import { PrismaClient } from '@prisma/client';
+import { AppModule } from './../src/app.module';
+import { INestApplication } from '@nestjs/common';
+import { Test, TestingModule } from '@nestjs/testing';
 import { UsersModule } from '../src/modules/users/users.module';
 import { SpendingModule } from '../src/modules/spending/spending.module';
 

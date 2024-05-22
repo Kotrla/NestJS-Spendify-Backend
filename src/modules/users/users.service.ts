@@ -1,10 +1,3 @@
-import {
-	ConflictException,
-	HttpException,
-	Injectable,
-	NotFoundException,
-	UnauthorizedException,
-} from '@nestjs/common';
 import { User } from '@prisma/client';
 import { compare, hash } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
@@ -13,6 +6,13 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUsertDto } from './dtos/update-user.dto';
 import { PrismaService } from '../../core/services/prisma.service';
 import { ILoginResponse, IUserPayload } from './models/users-login.model';
+import {
+	ConflictException,
+	HttpException,
+	Injectable,
+	NotFoundException,
+	UnauthorizedException,
+} from '@nestjs/common';
 
 @Injectable()
 export class UsersService {

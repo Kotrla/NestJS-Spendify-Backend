@@ -1,9 +1,9 @@
+import { User } from '@prisma/client';
+import { JwtService } from '@nestjs/jwt';
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { Test, TestingModule } from '@nestjs/testing';
 import { PrismaService } from '../../core/services/prisma.service';
-import { JwtService } from '@nestjs/jwt';
-import { User } from '@prisma/client';
 import { ConflictException, BadRequestException, NotFoundException } from '@nestjs/common';
 
 describe('UsersController', () => {
