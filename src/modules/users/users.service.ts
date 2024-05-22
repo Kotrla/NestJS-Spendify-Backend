@@ -26,8 +26,8 @@ export class UsersService {
 			const newUser = await this.prisma.user.create({
 				data: {
 					email: createUserDto.email,
-					password: await hash(createUserDto.password, process.env.SALT),
-					name: createUserDto.name,
+					password: await hash(createUserDto.password, Number(process.env.SALT)),
+					name: createUserDto.name || 'Demo',
 				},
 			});
 
@@ -38,7 +38,7 @@ export class UsersService {
 			if (error.code === 'P2002') {
 				throw new ConflictException('Email already registered');
 			}
-
+			console.log('eror', error);
 			throw new HttpException(error, 500);
 		}
 	}

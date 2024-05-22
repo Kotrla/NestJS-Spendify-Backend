@@ -6,10 +6,12 @@ import { CoreModule } from './core/core.module';
 import { AppController } from './app.controller';
 import { AuthGuard } from './common/guards/auth.guard';
 import { UsersModule } from './modules/users/users.module';
+import { SpendingModule } from './modules/spending/spending.module';
 
 @Module({
 	imports: [
 		UsersModule,
+		SpendingModule,
 		CoreModule,
 		JwtModule.register({
 			global: true,

@@ -19,6 +19,7 @@ model User {
   password String
   name     String?
   posts    Post[]
+  spending Spending[]
 }
 
 model Post {
@@ -28,4 +29,15 @@ model Post {
   published Boolean? @default(false)
   author    User?    @relation(fields: [authorId], references: [id])
   authorId  Int?
+}
+
+model Spending {
+  id        Int      @id @default(autoincrement())
+  title     String
+  type      String
+  category      String
+  amount      Int
+  date    DateTime
+  user    User?    @relation(fields: [userId], references: [id])
+  userId  Int
 }
