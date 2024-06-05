@@ -27,14 +27,14 @@ export class SpendingController {
 		@Body() createSpendingDto: CreateSpendingDto,
 		@Request() req: IExpressRequestWithUser
 	): Promise<Spending> {
-		createSpendingDto.userId = req.user.sub;
+		createSpendingDto.userId = req.user.id;
 		return this.spendingService.createSpending(createSpendingDto);
 	}
 
 	@Get()
 	@UseGuards(SelfGuard)
 	getAllUserSpendings(@Request() req: IExpressRequestWithUser): Promise<Spending[]> {
-		const userId = req.user.sub;
+		const userId = req.user.id;
 
 		return this.spendingService.getAllUserSpendings(userId);
 	}

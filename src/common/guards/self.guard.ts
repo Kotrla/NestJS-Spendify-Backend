@@ -21,14 +21,14 @@ export class SelfGuard implements CanActivate {
 				const post = await this.prismaService.spending.findFirst({
 					where: {
 						id: paramId,
-						userId: request.user.sub,
+						userId: request.user.id,
 					},
 				});
 
 				return paramId === post?.id;
 			default:
 				// 💡 Check if the user manages its own profile
-				return paramId === request.user.sub;
+				return paramId === request.user.id;
 		}
 	}
 }

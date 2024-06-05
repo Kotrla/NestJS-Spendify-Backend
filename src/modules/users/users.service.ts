@@ -58,15 +58,35 @@ export class UsersService {
 			}
 
 			const payload: IUserPayload = {
-				sub: user.id,
+				id: user.id,
 				email: user.email,
 				name: user.name,
+				password: '',
 			};
 
 			return {
 				access_token: await this.jwtService.signAsync(payload),
+				userID: payload.id,
 			};
 		} catch (error) {
+			throw new HttpException(error, 500);
+		}
+	}
+
+	async userDetails(id: number): Promise<IUserPayload> {
+		try {
+			const userDetails = await this.prisma.user.findUniqueOrThrow({
+				where: { id },
+			});
+
+			userDetails.password = '';
+
+			return userDetails;
+		} catch (error: any) {
+			if (error.code === 'P2025') {
+				throw new NotFoundException(`User with id ${id} not found`);
+			}
+
 			throw new HttpException(error, 500);
 		}
 	}
@@ -87,7 +107,7 @@ export class UsersService {
 				},
 			});
 
-			delete updatedUser.password;
+			updatedUser.password = '';
 
 			return updatedUser;
 		} catch (error: any) {

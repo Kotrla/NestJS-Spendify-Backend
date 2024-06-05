@@ -36,9 +36,10 @@ export class UsersController {
 		return this.usersService.loginUser(loginUserDto);
 	}
 
-	@Get()
-	userDetails(@Request() req: IExpressRequestWithUser): IUserPayload {
-		return req.user;
+	@Get(':id')
+	@UseGuards(SelfGuard)
+	userDetails(@Request() req: IExpressRequestWithUser): Promise<IUserPayload> {
+		return this.usersService.userDetails(req.user.id);
 	}
 
 	@Patch(':id')
