@@ -1,11 +1,12 @@
 import { IsNotEmpty } from 'class-validator';
+import { SpendingType } from '../models/enums';
 
 export class CreateSpendingDto {
 	@IsNotEmpty()
 	title: string;
 
 	@IsNotEmpty()
-	type: string;
+	type: SpendingType;
 
 	@IsNotEmpty()
 	category: string;
@@ -16,6 +17,5 @@ export class CreateSpendingDto {
 	@IsNotEmpty()
 	date: string;
 
-	@IsNotEmpty()
 	userId: number;
 }

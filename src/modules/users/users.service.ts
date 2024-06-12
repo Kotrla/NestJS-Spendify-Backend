@@ -38,7 +38,6 @@ export class UsersService {
 			if (error.code === 'P2002') {
 				throw new ConflictException('Email already registered');
 			}
-			console.log('eror', error);
 			throw new HttpException(error, 500);
 		}
 	}
