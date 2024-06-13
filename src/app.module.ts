@@ -1,13 +1,12 @@
 import { JwtModule } from '@nestjs/jwt';
 import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
-import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { CoreModule } from './core/core.module';
-import { AppController } from './app.controller';
 import { AuthGuard } from './common/guards/auth.guard';
 import { UsersModule } from './modules/users/users.module';
 import { SpendingModule } from './modules/spending/spending.module';
+import { InvestmentsModule } from './modules/investments/investments.module';
 
 @Module({
 	imports: [
@@ -17,6 +16,7 @@ import { SpendingModule } from './modules/spending/spending.module';
 		}),
 		UsersModule,
 		SpendingModule,
+		InvestmentsModule,
 		CoreModule,
 		JwtModule.register({
 			global: true,
@@ -24,9 +24,8 @@ import { SpendingModule } from './modules/spending/spending.module';
 			signOptions: { expiresIn: '12h' },
 		}),
 	],
-	controllers: [AppController],
+	controllers: [],
 	providers: [
-		AppService,
 		{
 			provide: APP_GUARD,
 			useClass: AuthGuard,
