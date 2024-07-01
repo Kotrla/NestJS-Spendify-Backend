@@ -21,6 +21,7 @@ model User {
   posts    Post[]
   spending Spending[]
   spendingCategories  SpendingCategory[]
+  investment Investment[]
 }
 
 model Post {
@@ -57,4 +58,23 @@ model SpendingCategory {
 enum SpendingType {
   EXPENSE
   INCOME
+}
+
+model Investment {
+  id                    Int                  @id @default(autoincrement())
+  title                 String
+  type                  InvestmentType
+  currentValue          Float
+  boughtValue           Float
+  date                  DateTime
+  user                  User                 @relation(fields: [userId], references: [id])
+  userId                Int
+}
+
+enum InvestmentType {
+  STOCK
+  BOND
+  REAL_ESTATE
+  CRYPTOCURRENCY
+  OTHER
 }

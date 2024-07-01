@@ -21,6 +21,15 @@ export class SelfGuard implements CanActivate {
 				});
 
 				return !!spending ? spending?.userId === request.user.id : true;
+			case 'investments':
+				const investment = await this.prismaService.investment.findFirst({
+					where: {
+						id: paramId,
+						userId: request.user.id,
+					},
+				});
+
+				return !!investment ? investment.userId === request.user.id : false;
 			default:
 				// 💡 Check if the user manages its own profile
 				return paramId === request.user.id;

@@ -67,6 +67,7 @@ export interface IStock {
 	timestamp: number;
 	volume: number;
 	volumeWeighted: number;
+	currentPrice: number;
 }
 
 export interface IStocksLiveResponse {

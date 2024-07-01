@@ -11,7 +11,7 @@ export class SpendingService {
 
 	async createSpending(createSpendingDto: CreateSpendingDto): Promise<Spending> {
 		const { title, type, category: categoryName, amount, date: spendingDate, userId } = createSpendingDto;
-		const date = new Date(spendingDate + 'T00:00:00');
+		const date = new Date(`${spendingDate}T00:00:00.000Z`);
 
 		try {
 			if (!Object.values(SpendingType).includes(type as SpendingType)) {
@@ -120,10 +120,12 @@ export class SpendingService {
 				where: { id },
 			});
 
+			const date = new Date(`${updateSpendingDto.date}T00:00:00.000Z`);
 			const updatedSpending = await this.prisma.spending.update({
 				where: { id },
 				data: {
 					...updateSpendingDto,
+					date: date || updateSpendingDto.date,
 				},
 			});
 
