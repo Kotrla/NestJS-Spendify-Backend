@@ -93,10 +93,7 @@ export class SpendingService {
 			const fromDateTime = `${fromDate}T00:00:00`;
 			const toDateTime = `${toDate}T23:59:59`;
 
-			const dateCondition =
-				fromDate === toDate
-					? { date: new Date(fromDateTime) }
-					: { date: { gte: new Date(fromDateTime), lte: new Date(toDateTime) } };
+			const dateCondition = { date: { gte: new Date(fromDateTime), lte: new Date(toDateTime) } };
 
 			return await this.prisma.spending.findMany({
 				where: {
